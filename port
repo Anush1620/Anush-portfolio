@@ -1,0 +1,48 @@
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import { Mail, Linkedin, Github, Phone, BarChart3, Database, PieChart } from "lucide-react";
+
+export default function Portfolio() {
+  const handleOpenLink = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  useEffect(() => {
+    const smoothScroll = (event) => {
+      const target = event.target.closest('a[href^="#"]');
+      if (target) {
+        event.preventDefault();
+        const id = target.getAttribute('href').slice(1);
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+    document.addEventListener("click", smoothScroll);
+    return () => document.removeEventListener("click", smoothScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-purple-50 text-gray-800 font-sans overflow-hidden">
+      {/* Header */}
+      <motion.header initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }} className="max-w-5xl mx-auto p-6 flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-blue-700 tracking-tight hover:scale-105 transition-transform duration-200">Anush Irawane</h1>
+        {/* Example icons */}
+        <div className="flex space-x-4">
+          <Mail onClick={() => handleOpenLink('mailto:your.email@example.com')} className="cursor-pointer" />
+          <Linkedin onClick={() => handleOpenLink('https://www.linkedin.com/in/yourprofile')} className="cursor-pointer" />
+          <Github onClick={() => handleOpenLink('https://github.com/yourprofile')} className="cursor-pointer" />
+        </div>
+      </motion.header>
+      {/* Content */}
+      <div className="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-md">
+        <p><strong>Based in Hyderabad, India</strong> — I specialize in leveraging data analytics, geospatial tools, and automation to improve product accuracy and efficiency. Currently contributing to Apple Maps maintenance at Tata Consultancy Services.</p>
+        <ul className="mt-4 list-disc list-inside">
+          <li>Built a data cleaning pipeline using Python (Pandas, NumPy) and Excel, automating the process of handling missing values, correcting data types, and removing duplicates to enhance data reliability and usability.</li>
+        </ul>
+        <p className="mt-4">Let’s connect and discuss opportunities or collaborations!</p>
+      </div>
+    </div>
+  );
+}
