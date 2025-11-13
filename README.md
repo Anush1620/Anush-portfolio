@@ -1,5 +1,4 @@
-# Anush-portfolio
-This is a portfolio based on my Career 
+
 # Anush Irawane Portfolio
 
 This is a minimalist and professional React-based portfolio built using **TailwindCSS**, **Framer Motion**, and **Lucide Icons**.
